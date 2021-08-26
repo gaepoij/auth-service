@@ -101,16 +101,14 @@ const refreshTokens = (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const getRefreshToken = (userId: number) => {
-  return jwt.sign({ id: userId }, process.env.REFRESH_TOKEN_SECRET as string, {
+const getRefreshToken = (userId: number): string =>
+  jwt.sign({ id: userId }, process.env.REFRESH_TOKEN_SECRET as string, {
     expiresIn: `${7 * 24 * 3600}s`,
   });
-};
 
-const getAccessToken = (userId: number) => {
-  return jwt.sign({ uid: userId }, process.env.ACCESS_TOKEN_SECRET as string, {
+const getAccessToken = (userId: number): string =>
+  jwt.sign({ uid: userId }, process.env.ACCESS_TOKEN_SECRET as string, {
     expiresIn: "3600s",
   });
-};
 
 export { registerUser, login, refreshTokens };
