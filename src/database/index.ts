@@ -16,8 +16,9 @@ export const initDb = async () => {
     },
   });
 
+  console.log("running migrations");
   knex.migrate.latest();
-  Model.knex(knex);
 
+  Model.knex(knex);
   console.log("database initialized..");
 };
